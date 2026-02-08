@@ -38,8 +38,8 @@ function SolarSystem() {
                 </div>
             )}
 
-            <Canvas camera={{ position: [0, 10, 35], fov: 60 }}>
-                <ambientLight intensity={0.3} />
+            <Canvas camera={{ position: [0, 10, 35], fov: 50 }}>
+                <ambientLight intensity={0.8} />
                 <pointLight position={[0, 0, 0]} intensity={2} color="#ffa500" />
 
                 {/* Stars background */}
