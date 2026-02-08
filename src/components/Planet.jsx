@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { useSpring, animated } from '@react-spring/three'
 
-function Planet({ name, radius, color, orbitRadius, speed, onClick }) {
+
+function Planet({ name, radius, map, orbitRadius, speed, onClick }) {
     const planetRef = useRef()
     const orbitRef = useRef()
     const [hovered, setHovered] = useState(false)
@@ -9,8 +11,8 @@ function Planet({ name, radius, color, orbitRadius, speed, onClick }) {
     const baseAngleRef = useRef(Math.random() * Math.PI * 2)
 
     // Animation settings
-    const ANIMATION_DURATION = 4 // 3 seconds in actual time units
-    const INTRO_ROTATIONS = 1
+    const ANIMATION_DURATION = 6 // 3 seconds in actual time units
+    const INTRO_ROTATIONS = 2
 
     useEffect(() => {
         startTimeRef.current = null
@@ -48,6 +50,39 @@ function Planet({ name, radius, color, orbitRadius, speed, onClick }) {
     ***********************************************************/
     //animations for the start
 
+    // Spring animation for hover
+    const { scale, emissiveIntensity, glowRadius } = useSpring({
+            scale: hovered ? 1.4 : 1,
+            emissiveIntensity: hovered ? 0.1 : 0,
+            glowRadius: hovered ? radius * 1.3 : radius, // for adding glow ring
+            config: { tension: 280, friction: 60 }
+        })
+            /*
+            // Bouncy (overshoot effect)
+            config: {
+              mass: 1,
+              tension: 180,
+              friction: 12
+            }
+
+            // Slow and smooth
+            config: {
+              mass: 1,
+              tension: 120,
+              friction: 40
+            }
+
+            // Snappy
+            config: {
+              mass: 0.5,
+              tension: 400,
+              friction: 30
+            }
+            config: 'wobbly'  // bouncy
+            config: 'stiff'   // quick
+            config: 'slow'    // smooth
+            config: 'molasses' // very slow
+             */
 
     useFrame(({ clock }) => {
         const elapsed = clock.getElapsedTime()
@@ -80,20 +115,31 @@ function Planet({ name, radius, color, orbitRadius, speed, onClick }) {
 
     return (
         <group ref={orbitRef}>
-            <mesh
+            {/* Main planet */}
+            <animated.mesh
                 ref={planetRef}
                 onClick={onClick}
                 onPointerOver={() => setHovered(true)}
                 onPointerOut={() => setHovered(false)}
-                scale={hovered ? 1.2 : 1}
+                scale={scale}
             >
                 <sphereGeometry args={[radius, 32, 32]} />
-                <meshStandardMaterial
-                    color={color}
-                    emissive={hovered ? color : '#000000'}
-                    emissiveIntensity={hovered ? 0.3 : 0}
+                <animated.meshStandardMaterial
+                    map={map}
+                    emissive='#ffffff'
+                    emissiveIntensity={emissiveIntensity}
                 />
-            </mesh>
+            </animated.mesh>
+
+            {/* Glow ring */}
+            <animated.mesh scale={glowRadius / radius}>
+                <sphereGeometry args={[radius, 32, 32]} />
+                <meshBasicMaterial
+                    color="#ffffff"
+                    transparent
+                    opacity={hovered ? 0.2 : 0}
+                />
+            </animated.mesh>
 
             {/* Orbit path */}
             <mesh rotation={[Math.PI / 2, 0, 0]}>
