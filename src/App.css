@@ -17,36 +17,47 @@ body {
 
 .info-panel {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    box-shadow: rgba(255, 255, 255, 0.48) 0 0 20px;
+    padding: 25px 45px 25px 45px ;
     border-radius: 10px;
-    max-width: 350px;
+    max-width: 550px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 10;
+    animation: fadein 1.5s;
+}
+
+@keyframes fadein {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 .info-panel h2 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #ffa500;
 }
 
 .info-panel p {
-    line-height: 1.6;
+    line-height: 1.9;
 }
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 20px;
     background: #ff4444;
     border: none;
     color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 2px 6px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
     transition: background 0.3s;

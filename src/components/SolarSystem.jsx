@@ -15,12 +15,12 @@ const SatTex = new THREE.TextureLoader().load('/textures/Saturn.jpg')
 
 
 const planetsData = [
-    { name: 'Mercury', radius: 0.4, map:MerTex, orbitRadius: 6, speed: 0.16, content: 'About Me & Skills - Learn about my background and expertise' },//default speed = 0.04
-    { name: 'Venus', radius: 0.6, map:VenTex, orbitRadius: 9, speed: 0.12, content: 'Contact & Social - Get in touch with me' },//default speed = 0.03
-    { name: 'Earth', radius: 0.65, map:RthTex, orbitRadius: 12, speed: 0.08, content: 'Project #1 - E-commerce Platform with React and Node.js' },//default speed = 0.02
-    { name: 'Mars', radius: 0.5, map:MarTex, orbitRadius: 15, speed: 0.072, content: 'Project #2 - Dashboard Analytics App with real-time data' },//default speed = 0.018
-    { name: 'Jupiter', radius: 1.4, map:JupTex, orbitRadius: 20, speed: 0.04, content: 'Major Case Study - Enterprise CRM System' },//default speed = 0.01
-    { name: 'Saturn', radius: 1.2, map:SatTex, orbitRadius: 25, speed: 0.0032, content: 'Project #3 - Mobile-First Social Platform' },//default speed = 0.008
+    { name: 'Mercury', radius: 0.4, map:MerTex, orbitRadius: 6, speed: 0.16, content: 'The fastest planet, orbiting the Sun in just 88 Earth days. It has no atmosphere to hold heat, leading to extreme temperature swings.' },//default speed = 0.04
+    { name: 'Venus', radius: 0.6, map:VenTex, orbitRadius: 9, speed: 0.12, content: `The hottest planet , with a thick atmosphere and no moons. A day on Venus is longer than its year.` },//default speed = 0.03
+    { name: 'Earth', radius: 0.65, map:RthTex, orbitRadius: 12, speed: 0.08, content: 'The only planet not named after a god, and the only one known to harbor life.' },//default speed = 0.02
+    { name: 'Mars', radius: 0.5, map:MarTex, orbitRadius: 15, speed: 0.072, content: 'Home to the solar system\'s largest volcano, Olympus Mons, which is nearly three times taller than Mount Everest.' },//default speed = 0.018
+    { name: 'Jupiter', radius: 1.4, map:JupTex, orbitRadius: 20, speed: 0.04, content: 'The largest planet (over 300 times more massive than Earth) with a massive storm called the Great Red Spot that has raged for centuries.' },//default speed = 0.01
+    { name: 'Saturn', radius: 1.2, map:SatTex, orbitRadius: 25, speed: 0.0032, content: 'Features the most extensive ring system, made of ice and rock. It has the most moons in the solar system.' },//default speed = 0.008
 ]
 
 function SolarSystem() {
